@@ -3,15 +3,13 @@
  * @Author: liuyuluan
  * @Date: 2021-03-15 20:49:58
  * @LastEditors: liuyuluan
- * @LastEditTime: 2021-03-15 21:30:04
+ * @LastEditTime: 2021-03-15 23:27:08
  */
 
 import { apis } from './apis';
 import axios from 'axios';
 import store from '../store/index';
-import { changeSquirtle } from '../reducer/squirtle-reducer'
-import { changeBulbasaur } from '../reducer/bulbasaur-reducer';
-import { changeCharmander } from '../reducer/charmander-reducer';
+import { changeSquirtle, changeBulbasaur, changeCharmander } from '../reducer/common-reducer';
 
 /**
  * @description: 获取squirtle数据

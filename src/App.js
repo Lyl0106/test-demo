@@ -1,18 +1,35 @@
+/*
+ * @Description: 
+ * @Author: liuyuluan
+ * @Date: 2021-03-15 20:29:43
+ * @LastEditors: liuyuluan
+ * @LastEditTime: 2021-03-15 23:31:54
+ */
 import React, { PureComponent } from 'react'
 import { Button, Layout  } from 'antd';
-import SquirtleView from './view/squirtle-view';
-import CharmanderView from './view/charmander-view';
-import BulbasaurView from './view/bulbasaur-view';
+import { connect } from 'react-redux';
+import { getBulbasaurData, getCharmanderData, getSquirtleData } from './util/get-data';
+import CommonView from './view/common-view';
 import './less/main.less';
 
 const { Header, Content } = Layout;
 
+@connect(
+  state => state.common,
+  {}
+)
 class App extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
       mode: '',
     }
+  }
+
+  componentDidMount() {
+    getSquirtleData();
+    getCharmanderData();
+    getBulbasaurData();
   }
 
   /**
@@ -31,32 +48,21 @@ class App extends PureComponent {
 
     this.setState({ mode })
   }
-  
-  /**
-   * @description: 渲染第四个内容框
-   * @return {JSX}
-   */
-  renderFlourContent = () => {
-    const { mode } = this.state;
-    switch (mode) {
-      case 'squirtle': return (<SquirtleView />);
-      case 'bulbasaur': return (<BulbasaurView />);
-      case 'charmander': return (<CharmanderView />);
-      default: return null;
-    }
-  }
-  
-
+ 
   render() { 
+    const { mode } = this.state
+    const { squirtle, charmander, bulbasaur } = this.props;
+
     return (
       <Layout className="page-content">
-        <Header>头部</Header>
+        <Header>React Test</Header>
         <Content>
-          <SquirtleView />
-          <CharmanderView />
-          <BulbasaurView />
+          <CommonView dataSource={squirtle} />
+          <CommonView dataSource={charmander} />
+          <CommonView dataSource={bulbasaur} />
+
           <Button type="primary" onClick={this.handleView}>添加窗口</Button>
-          {this.renderFlourContent()}
+          {mode && <CommonView dataSource={this.props[mode]} />}
         </Content>
       </Layout>
     );
