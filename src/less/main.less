@@ -1,0 +1,56 @@
+@charset 'utf-8';
+@main-color: #1890ff;
+@second-color: rgba(64, 169, 255, .5);
+@main-white: #fff;
+
+.page-content{
+  position: absolute;
+  top:0 ;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+
+  .ant-layout-header{
+    color: @main-white;
+    font-size: 1.5rem;
+    text-align: center;
+  }
+
+  .ant-layout-content{
+    height: calc(100% - 4rem);
+    overflow-y: auto;
+  }
+
+  .page-content-item{
+    margin: 1.25rem 20%;
+
+    header{
+        background-color: @main-color;
+        font-size: 1.25rem;
+        text-align: center;
+        color: @main-white;
+    }
+
+    section{
+        background-color: @second-color;
+
+        p{
+            text-align: center;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        img{
+            margin-left: calc(50% - 3.125rem);
+            width: 6.25rem;
+            height: 6.25rem;
+        }
+    }
+  }
+
+  .ant-btn{
+    margin: 1.25rem 20%;
+    width: 60%;
+  }
+}
